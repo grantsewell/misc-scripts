@@ -13,41 +13,38 @@
 
 	    You should have received a copy of the GNU General Public License
 	    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 	*/
 	error_reporting('E_NONE');
 
 	function show_help(){
-	echo "\nBlue Coat Site Review Bulk Category Checker
-	Copyright ©2015 Grant Sewell <grantsewell{at}gmail{dot}com>
-		
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License.
+		echo "\nBlue Coat Site Review Bulk Category Checker\n";
+		echo "Copyright ©2015 Grant Sewell <grantsewell{at}gmail{dot}com>\n\n";
+		echo "This program is free software: you can redistribute it and/or modify\n";
+		echo "it under the terms of the GNU General Public License as published by\n";
+		echo "the Free Software Foundation, either version 3 of the License.\n\n";
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+		echo "This program is distributed in the hope that it will be useful,\n";
+		echo "but WITHOUT ANY WARRANTY; without even the implied warranty of\n";
+		echo "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n";
+		echo "GNU General Public License for more details.\n\n";
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+		echo "You should have received a copy of the GNU General Public License\n";
+		echo "along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n";
 
-	Usage:
-	php bluecoat_sitereview.php [param]
+		echo "Usage:\n";
+		echo "php bluecoat_sitereview.php [param]\n\n";
 
-	Example:
-	php bluecoat_sitereview.php -u google.com -t 15 -v
+		echo "Example:\n";
+		echo "php bluecoat_sitereview.php -u google.com -t 15 -v\n\n";
 
-	Parameters:
+		echo "Parameters:\n\n";
 
-	-h, -help		Show this help message
-	-u, -url		URL (i.e. google.com, http://google.com, etc.)
-	-t, -timeout	Set cURL timeout for connection (default is 10s)
-	-f, -file 		Set the filename to export to (myfile.txt)
-	-v, -verbose	Verbose output (cURL Debug Mode)
-	\n";
-	exit(0);
+		echo "-h, -help		Show this help message\n";
+		echo "-u, -url		URL (i.e. google.com, http://google.com, etc.)\n";
+		echo "-t, -timeout	Set cURL timeout for connection (default is 10s)\n";
+		echo "-f, -file 		Set the filename to export to (myfile.txt)\n";
+		echo "-v, -verbose	Verbose output (cURL Debug Mode)\n";
+		exit(0);
 	}
 
 	// Function to do an individual URL search
@@ -222,7 +219,7 @@
 				// If there's two categories, break it apart
 				$category = explode(" and ", strip_tags($matches[0]));
 
-				// Set the export file name
+				// Export to a text file
 				$file = 'export.txt';
 				// Open the file to get existing content
 				$current = file_get_contents($file);
@@ -232,6 +229,25 @@
 				}
 				// Append the URLs
 				$current .= $strURL . "\t" . $category[0] . "\t" . $category[1] . "\n";
+				// Write the contents back to the file
+				file_put_contents($file, $current);
+
+				// Export to HTML too
+				$file = 'export.htm';
+				// Open the file to get existing content
+				$current = file_get_contents($file);
+				if ($linecount == 1) {
+					// Setup the headers
+					$current .= "<html><head><title>Bulk Category Check</title></head><body>"
+					$current .= "<h1>Bulk Category CHeck</h1>\n";
+					$current .= "<table><tr><td>URL</td><td>Category [1]</td><td>Category[2]</td>\n";
+				}
+				// Append the URLs
+				$current .= "<tr><td>" . $strURL . "</td><td>" . $category[0] . "</td><td>" . $category[1] . "</td>\n";
+				//Add the footer
+				if ($linecount == count($bulklist)) {
+					$current .= "</table></body></html>";
+				}
 				// Write the contents back to the file
 				file_put_contents($file, $current);
 
