@@ -83,7 +83,7 @@
 
 		// Error Handling
 		if ($httpCode != 200){
-			echo "Error (cURL Response code: ".$httpCode.")";
+			echo "Error (cURL Response code: ".$httpCode.")\n";
 			exit(3);
 		}
 		
@@ -120,6 +120,8 @@
 
 	// Function to do a bulk URL search
 	function get_category_bulk($strBulk,$curl_timeout,$debug=false) {
+
+		$try = 0;
 
 		// This is the URL for Blue Coat's Site Review web page - Valid 7/2015
 		$check_url  = "http://sitereview.bluecoat.com/rest/categorization";
@@ -176,8 +178,13 @@
 
 			// Error Handling
 			if ($httpCode != 200){
-				echo "Error (cURL Response code: ".$httpCode.")";
-				exit(3);
+				echo "Error (cURL Response code: ".$httpCode.")\n";
+				if ($try < 3) {
+					echo "Trying again..."
+					$try = $try + 1;
+				} else {
+					exit(3);
+				}
 			}
 
 			// Wait 15 seconds between each URL
@@ -240,7 +247,7 @@
 					// Setup the headers
 					$current .= "<html><head><title>Bulk Category Check</title></head><body>";
 					$current .= "<h1>Bulk Category CHeck</h1>\n";
-					$current .= "<table><tr><td>URL</td><td>Category [1]</td><td>Category[2]</td>\n";
+					$current .= "<table border=1><tr><td>URL</td><td>Category [1]</td><td>Category[2]</td>\n";
 				}
 				// Append the URLs
 				$current .= "<tr><td>" . $strURL . "</td><td>" . $category[0] . "</td><td>" . $category[1] . "</td>\n";
