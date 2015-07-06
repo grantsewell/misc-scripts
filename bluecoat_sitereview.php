@@ -238,7 +238,7 @@
 				$current = file_get_contents($file);
 				if ($linecount == 1) {
 					// Setup the headers
-					$current .= "<html><head><title>Bulk Category Check</title></head><body>"
+					$current .= "<html><head><title>Bulk Category Check</title></head><body>";
 					$current .= "<h1>Bulk Category CHeck</h1>\n";
 					$current .= "<table><tr><td>URL</td><td>Category [1]</td><td>Category[2]</td>\n";
 				}
