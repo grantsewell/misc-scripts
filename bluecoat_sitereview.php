@@ -180,7 +180,7 @@
 			if ($httpCode != 200){
 				echo "Error (cURL Response code: ".$httpCode.")\n";
 				if ($try < 3) {
-					echo "Trying again..."
+					echo "Trying again...";
 					$try = $try + 1;
 				} else {
 					exit(3);
