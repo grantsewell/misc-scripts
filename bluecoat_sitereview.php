@@ -184,7 +184,8 @@
 					$try = $try + 1;
 					goto start;
 				} else {
-					exit(3);
+					// Set output to error, will parse in tables for later review
+					$curl_html_output = "ERROR";
 				}
 			}
 
