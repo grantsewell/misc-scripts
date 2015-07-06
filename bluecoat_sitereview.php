@@ -178,14 +178,12 @@
 
 			// Error Handling
 			if ($httpCode != 200){
-				echo "Error (cURL Response code: ".$httpCode.")\n";
+				echo "...ERROR! (cURL Response code: ".$httpCode.") ";
+				// Try again 3 times, otherwise move forward and log the error (below)
 				if ($try < 3) {
-					echo "Trying again...";
+					echo "Trying again...\n";
 					$try = $try + 1;
 					goto start;
-				} else {
-					// Set output to error, will parse in tables for later review
-					$curl_html_output = "ERROR";
 				}
 			}
 
@@ -290,6 +288,38 @@
 					echo "Blue Coat is requiring a CAPTCHA to be entered.\nThe script will pause for 2 minutes and try again.\n";
 					sleep(120);
 					goto start;
+				} else {
+					// Export to a text file
+					$file = 'export.txt';
+					// Open the file to get existing content
+					$current = file_get_contents($file);
+					if ($linecount == 1) {
+						// Setup the headers
+						$current .= "URL\tCategory [1]\tCategory[2]\n";
+					}
+					// Append the URLs
+					$current .= $strURL . "\tERROR\t\n";
+					// Write the contents back to the file
+					file_put_contents($file, $current);
+
+					// Export to HTML too
+					$file = 'export.htm';
+					// Open the file to get existing content
+					$current = file_get_contents($file);
+					if ($linecount == 1) {
+						// Setup the headers
+						$current .= "<html><head><title>Bulk Category Check</title></head><body>";
+						$current .= "<h1>Bulk Category Check</h1>\n";
+						$current .= "<table border=1><tr><td>URL</td><td>Category [1]</td><td>Category[2]</td>\n";
+					}
+					// Append the URLs
+					$current .= "<tr><td>" . $strURL . "</td><td>ERROR</td><td></td>\n";
+					//Add the footer
+					if ($linecount == count($bulklist)) {
+						$current .= "</table></body></html>";
+					}
+					// Write the contents back to the file
+					file_put_contents($file, $current);
 				}
 			}
 		}
