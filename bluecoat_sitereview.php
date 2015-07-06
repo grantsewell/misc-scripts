@@ -189,24 +189,24 @@
 				}
 			}
 
-			// Wait 15 seconds between each URL
-			sleep(1);
+			// Wait 20 seconds between each URL
+			sleep(2);
 			echo ".";
 			sleep(1);
 			echo ".";
-			sleep(1);
+			sleep(2);
 			echo ".";
 			sleep(1);
 			echo ".";
-			sleep(1);
+			sleep(2);
 			echo ".";
 			sleep(1);
 			echo ".";
-			sleep(1);
+			sleep(2);
 			echo ".";
 			sleep(1);
 			echo ".";
-			sleep(1);
+			sleep(2);
 			echo ".";
 			sleep(1);
 			echo ".";
