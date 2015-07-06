@@ -176,17 +176,6 @@
 			$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		    curl_close($ch);
 
-			// Error Handling
-			if ($httpCode != 200){
-				echo "...ERROR! (cURL Response code: ".$httpCode.") ";
-				// Try again 3 times, otherwise move forward and log the error (below)
-				if ($try < 3) {
-					echo "Trying again...\n";
-					$try = $try + 1;
-					goto start;
-				}
-			}
-
 			// Wait 20 seconds between each URL
 			sleep(2);
 			echo ".";
@@ -219,6 +208,16 @@
 			sleep(1);
 			echo ".";
 			sleep(1);
+
+			// Error Handling
+			if ($httpCode != 200){
+				// Try again 3 times, otherwise move forward and log the error (below)
+				if ($try < 3) {
+					echo "ERROR! Retrying...";
+					$try = $try + 1;
+					goto start;
+				}
+			}
 			
 		    // Find the category HTML tag
 			if (preg_match("/<a href.*catnum.*\">.*<\/a>/", $curl_html_output, $matches)) {
@@ -275,7 +274,7 @@
 				}
 			} else {
 				// Something went wrong. Parse the error and evaluate.
-				echo "ERROR!\n";
+				echo "FATAL ERROR!\n";
 				preg_match("/errorType.*}/", $curl_html_output, $matches);
 				$curlrep = str_replace('"', "", $matches[0]);
 				$curlrep = str_replace('}', "", $curlrep);
