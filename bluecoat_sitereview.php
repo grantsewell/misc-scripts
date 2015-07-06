@@ -182,6 +182,7 @@
 				if ($try < 3) {
 					echo "Trying again...";
 					$try = $try + 1;
+					goto start;
 				} else {
 					exit(3);
 				}
