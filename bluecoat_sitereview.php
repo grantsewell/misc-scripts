@@ -130,7 +130,7 @@
 		$bulklist = file($strBulk);
 		echo "Starting bulk file processing...\n\n";
 		$numURLs = count($bulklist);
-		$seconds = $numURLs * 15;
+		$seconds = $numURLs * 20;
 		$hours = floor($seconds / 3600);
 		$mins = floor(($seconds - ($hours*3600)) / 60);
 		$secs = floor($seconds % 60);
