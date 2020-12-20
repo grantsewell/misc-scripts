@@ -3,11 +3,13 @@
 # Author: Grant Sewell
 # Date:   12/19/2020
 
+apt-get update
+
 # Remove VIM Tiny
-apt-get remove vim-tiny
+apt-get remove vim-tiny -y
 
 # Install Standard Utilities
-apt-get install vim htop open-vm-tools sudo nfs-kernel-server unzip ntfs-3g git openssh-server apt-transport-https curl gnupg2 unzip
+apt-get install vim htop open-vm-tools sudo nfs-kernel-server unzip ntfs-3g git openssh-server apt-transport-https curl gnupg2 unzip -y
 
 # Blacklist Unnecessary Functions for ESXi
 cat >/etc/modprobe.d/blacklist.conf <<EOL
