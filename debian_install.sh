@@ -40,7 +40,7 @@ net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
 # Add User to Sudoers
-echo "Enter username to add to sudoers:"
+echo "Enter username to add to sudoers: "
 read user_sudo
 echo Adding $user_sudo to sudo group
-adduser $user_sudo sudo
+usermod -a -G sudo $user_sudo
