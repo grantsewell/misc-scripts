@@ -44,3 +44,8 @@ echo "Enter username to add to sudoers: "
 read user_sudo
 echo Adding $user_sudo to sudo group
 usermod -a -G sudo $user_sudo
+
+# End of Script
+echo "Installation Complete"
+read -t 5 -p "System will reboot in 5 seconds..."
+reboot
