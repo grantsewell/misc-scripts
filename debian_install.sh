@@ -5,6 +5,8 @@
 
 # Update cache
 apt-get update
+apt-get upgrade -y
+apt-get dist-upgrade -y
 
 # Remove VIM Tiny
 apt-get remove vim-tiny -y
