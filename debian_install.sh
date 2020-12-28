@@ -43,7 +43,7 @@ EOL
 
 # Add User to Sudoers
 echo "Enter username to add to sudoers: "
-read -p user_sudo
+read -n 50 user_sudo
 echo Adding $user_sudo to sudo group
 usermod -a -G sudo $user_sudo
 
