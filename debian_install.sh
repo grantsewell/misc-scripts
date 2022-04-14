@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # Title:  Debian VM Build Script
 # Author: Grant Sewell
-# Date:   12/19/2020
+# Date:   04/14/2022
 
-# Update cache
+# Update cache and upgrade system
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -13,6 +13,9 @@ apt-get remove vim-tiny -y
 
 # Install Standard Utilities
 apt-get install vim htop open-vm-tools sudo nfs-kernel-server unzip ntfs-3g git openssh-server apt-transport-https curl gnupg2 unzip cowsay -y
+
+# Cleanup leftover applications
+apt-get autoremove -y
 
 # Blacklist Unnecessary Functions for ESXi
 cat >/etc/modprobe.d/blacklist.conf <<EOL
@@ -42,9 +45,7 @@ net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
 # Add User to Sudoers
-echo "Enter username to add to sudoers: "
-read -pUsername: user_sudo
-echo Adding $user_sudo to sudo group
+read -p "Enter Username to add to sudoers: " user_sudo
 adduser $user_sudo sudo
 
 # End of Script
