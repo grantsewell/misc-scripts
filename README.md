@@ -7,4 +7,4 @@ bluecoat_sitereview.php
 debian_install.sh
 -- This script completes default installation activities for a Debian virtual machine running on VMWare ESXi. Works on Debian v6+
 
-Run using: bash <(curl -s -L http://debian.x01.us)
+Run using: `bash <(curl -s -L http://debian.x01.us)`
