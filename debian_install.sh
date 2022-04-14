@@ -43,9 +43,9 @@ EOL
 
 # Add User to Sudoers
 echo "Enter username to add to sudoers: "
-read -n 50 user_sudo
+read -pUsername: user_sudo
 echo Adding $user_sudo to sudo group
-usermod -a -G sudo $user_sudo
+adduser $user_sudo sudo
 
 # End of Script
 echo "Installation Complete"
