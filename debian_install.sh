@@ -44,6 +44,9 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
+#Update initramfs
+update-initramfs -u
+
 # Add User to Sudoers
 read -p "Enter Username to add to sudoers: " user_sudo
 adduser $user_sudo sudo
