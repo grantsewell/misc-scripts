@@ -12,7 +12,7 @@ apt-get dist-upgrade -y
 apt-get remove vim-tiny -y
 
 # Install Standard Utilities
-apt-get install vim htop open-vm-tools sudo nfs-kernel-server unzip ntfs-3g git openssh-server apt-transport-https curl gnupg2 unzip cowsay -y
+apt-get install vim htop open-vm-tools sudo nfs-kernel-server unzip ntfs-3g git openssh-server apt-transport-https curl gnupg2 unzip unattended-upgrades cowsay -y
 
 # Cleanup leftover applications
 apt-get autoremove -y
