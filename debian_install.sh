@@ -44,6 +44,24 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
+# Configure Unattended Upgrades
+cat >>/etc/apt/apt.config.d/51my-unattended-upgrades <<EOL
+Unattended-Upgrade::Allowed-Origins {
+"${distro_id}:${distro_codename}-updates";
+};
+EOL
+
+# Configure Upgrade Frequency
+cat >>/etc/apt/apt.conf.d/20auto-upgrades <<EOL
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+APT::Periodic::AutocleanInterval "7";
+EOL
+
+# Enable Unattended Upgrades
+systemctl enable unattended-upgrades
+systemctl start unattended-upgrades
+
 #Update initramfs
 update-initramfs -u
 
