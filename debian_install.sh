@@ -44,17 +44,15 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
-# Configure Unattended Upgrades
-cat >>/etc/apt/apt.conf.d/51my-unattended-upgrades <<EOL
-Unattended-Upgrade::Allowed-Origins {
-"${distro_id}:${distro_codename}-updates";
+# Configure Unattended Upgrades to Update all Packages
+cat >>/etc/apt/apt.conf.d/51unattended-upgrades <<EOL
+Unattended-Upgrade::Origins-Pattern {
+  "origin=*";
 };
 EOL
 
-# Configure Upgrade Frequency
+# Add autoclean interval
 cat >>/etc/apt/apt.conf.d/20auto-upgrades <<EOL
-APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Unattended-Upgrade "1";
 APT::Periodic::AutocleanInterval "7";
 EOL
 
