@@ -19,7 +19,7 @@ apt-get autoremove -y
 
 # Blacklist Unnecessary Functions for ESXi
 cat >/etc/modprobe.d/blacklist.conf <<EOL
-#Optimized Blacklist for Debian VM
+# Optimized Blacklist for Debian VM
 blacklist floppy
 blacklist mptctl
 blacklist pcspkr
