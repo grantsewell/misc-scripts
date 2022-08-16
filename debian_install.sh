@@ -45,7 +45,7 @@ net.ipv6.conf.eth0.disable_ipv6 = 1
 EOL
 
 # Configure Unattended Upgrades
-cat >>/etc/apt/apt.config.d/51my-unattended-upgrades <<EOL
+cat >>/etc/apt/apt.conf.d/51my-unattended-upgrades <<EOL
 Unattended-Upgrade::Allowed-Origins {
 "${distro_id}:${distro_codename}-updates";
 };
