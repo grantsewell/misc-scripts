@@ -2,8 +2,8 @@
 # Title:  Expire Okta Password v1.0
 # Author: Grant Sewell
 # Date:   09/03/2022
-# Desc:   Expires an Okta account password immediate. User session is not terminated and temp password not assigned.
-#         At next login or session expiration, user will be prompted for a password reset.
+# Desc:   Expires an Okta account password immediately. User session is not terminated and a temporary password is not assigned.
+#         At next login or session expiration, user will be prompted to set a new password.
 
 OktaApiToken=YOUR_API_TOKEN #https://developer.okta.com/docs/guides/create-an-api-token/main/
 OktaDomain=YOUR_OKTA_DOMAIN #https://mydomain.okta.com
