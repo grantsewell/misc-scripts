@@ -6,7 +6,7 @@
 #         At next login or session expiration, user will be prompted to set a new password.
 
 OktaApiToken=YOUR_API_TOKEN #https://developer.okta.com/docs/guides/create-an-api-token/main/
-OktaDomain=YOUR_OKTA_DOMAIN #https://mydomain.okta.com
+OktaDomain=YOUR_OKTA_DOMAIN #mydomain.okta.com
 
 # Ask which user
 read -p "Enter user login/email address: " OktaUser
