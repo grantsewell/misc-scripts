@@ -1,7 +1,7 @@
 #!/bin/bash
-# Title:  Debian VM Build Script
+# Title:  Debian Bullseye VM Build Script
 # Author: Grant Sewell
-# Date:   04/14/2022
+# Date:   09/07/2022
 
 # Update cache and upgrade system
 apt-get update
@@ -61,6 +61,17 @@ EOL
 # Enable Unattended Upgrades
 systemctl enable unattended-upgrades
 systemctl start unattended-upgrades
+
+# Replace /etc/apt/source.list with secure repositories
+mv /etc/apt/sources.list /etc/apt/sources.orig
+cat >/etc/apt/sources.list <<EOL
+deb https://ftp.debian.org/debian/ bullseye main
+deb-src https://ftp.debian.org/debian/ bullseye main
+deb https://security.debian.org/debian-security bullseye-security main contrib non-free
+deb-src https://security.debian.org/debian-security bullseye-security main contrib non-free
+deb https://ftp.debian.org/debian/ bullseye-updates main
+deb-src https://ftp.debian.org/debian/ bullseye-updates main
+EOL
 
 #Update initramfs
 update-initramfs -u
