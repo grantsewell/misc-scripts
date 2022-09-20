@@ -62,15 +62,15 @@ EOL
 systemctl enable unattended-upgrades
 systemctl start unattended-upgrades
 
-# Replace /etc/apt/source.list with secure repositories
+# Replace /etc/apt/sources.list with secure and extended security repositories
 mv /etc/apt/sources.list /etc/apt/sources.orig
 cat >/etc/apt/sources.list <<EOL
-deb https://ftp.debian.org/debian/ bullseye main
-deb-src https://ftp.debian.org/debian/ bullseye main
-deb https://security.debian.org/debian-security bullseye-security main contrib non-free
-deb-src https://security.debian.org/debian-security bullseye-security main contrib non-free
-deb https://ftp.debian.org/debian/ bullseye-updates main
-deb-src https://ftp.debian.org/debian/ bullseye-updates main
+deb https://ftp.debian.org/debian/ stable main
+deb-src https://ftp.debian.org/debian/ stable main
+deb https://security.debian.org/debian-security stable-security main contrib non-free
+deb-src https://security.debian.org/debian-security stable-security main contrib non-free
+deb https://ftp.debian.org/debian/ stable-updates main
+deb-src https://ftp.debian.org/debian/ stable-updates main
 EOL
 
 #Update initramfs
