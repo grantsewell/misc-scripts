@@ -6,7 +6,7 @@ bluecoat_sitereview.php
 
 debian_install.sh
 -- This script completes default installation activities for a Debian virtual machine running on VMWare ESXi. Works on Debian v6+.
-** Update after 9/7/22 includes secure repo updates for Debian Bullseye. Comment out these lines if you are using an older version.
+** Update after 9/20/22 includes secure repo updates for Debian STABLE. Older versions will be upgraded automatically.
 
 Run using: `bash <(curl -s -L http://debian.x01.us)`
 
