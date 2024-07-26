@@ -67,8 +67,8 @@ mv /etc/apt/sources.list /etc/apt/sources.orig
 cat >/etc/apt/sources.list <<EOL
 deb https://ftp.debian.org/debian/ stable main
 deb-src https://ftp.debian.org/debian/ stable main
-deb https://security.debian.org/debian-security stable-security main contrib non-free
-deb-src https://security.debian.org/debian-security stable-security main contrib non-free
+deb https://security.debian.org/debian-security stable-security main contrib non-free non-free-firmware
+deb-src https://security.debian.org/debian-security stable-security main contrib non-free non-free-firmware
 deb https://ftp.debian.org/debian/ stable-updates main
 deb-src https://ftp.debian.org/debian/ stable-updates main
 EOL
