@@ -65,12 +65,12 @@ systemctl start unattended-upgrades
 # Replace /etc/apt/sources.list with secure and extended security repositories
 mv /etc/apt/sources.list /etc/apt/sources.orig
 cat >/etc/apt/sources.list <<EOL
-deb https://ftp.debian.org/debian/ stable main
-deb-src https://ftp.debian.org/debian/ stable main
+deb https://ftp.debian.org/debian/ stable main contrib non-free non-free-firmware
+deb-src https://ftp.debian.org/debian/ stable main contrib non-free non-free-firmware
 deb https://security.debian.org/debian-security stable-security main contrib non-free non-free-firmware
 deb-src https://security.debian.org/debian-security stable-security main contrib non-free non-free-firmware
-deb https://ftp.debian.org/debian/ stable-updates main
-deb-src https://ftp.debian.org/debian/ stable-updates main
+deb https://ftp.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+deb-src https://ftp.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
 EOL
 
 #Update initramfs
